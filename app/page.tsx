@@ -1,6 +1,6 @@
 "use client";
 
-import Hero from "./Hero";
+import Hero from "./components/Hero";
 import Middlesection from "./components/Middlesection";
 
 

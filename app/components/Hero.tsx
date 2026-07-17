@@ -1,7 +1,5 @@
 "use client";
 
-import MiddleSection from "./components/Middlesection";
-
 export default function Home() {
   return (
     <div className="flex flex-row h-[64px] w-full justify-between py-3 mb-3 relative z-[1000]">

@@ -10,12 +10,12 @@ export default function PhotoPage() {
 <p className="text-sm text-gray-400 tracking-wider uppercase mb-1">CLICK TO TYPE</p>
 <form action="javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')" className="relative z-10">
 <div className="flex flex-col items-center"></div>
-<input className="text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[372px] sm:w-[432px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-10" placeholder="Introduce Yourself" autocomplete="off" type="text" name="name" fdprocessedid="04csh7"/>
+<input className="text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[372px] sm:w-[432px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-10" placeholder="Introduce Yourself" autoComplete="off" type="text" name="name" fdprocessedid="04csh7"/>
 <button type="submit" className="sr-only">Submit</button>
 </form>
 <img alt="Diamond Large" loading="lazy" width="762" height="762" decoding="async" data-nimg="1" className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-1/2 w-[480px] h-[480px] md:w-[762px] md:h-[762px] animate-spin-slow rotate-190" srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-light-large.27413569.png&amp;w=828&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-light-large.27413569.png&amp;w=1920&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-light-large.27413569.png&amp;w=1920&amp;q=75" style={{ color: "transparent" }}/>
 <img alt="Diamond Medium" loading="lazy" width="682" height="682" decoding="async" data-nimg="1" className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-1/2 w-[400px] h-[400px] md:w-[682px] md:h-[682px] animate-spin-slower rotate-185" srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-medium-medium.7599ea96.png&amp;w=750&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-medium-medium.7599ea96.png&amp;w=1920&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-medium-medium.7599ea96.png&amp;w=1920&amp;q=75" style={{ color: "transparent" }}/>
-<img alt="Diamond Small" loading="lazy" width="602" height="602" decoding="async" data-nimg="1" className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-1/2 w-[320px] h-[320px] md:w-[602px] md:h-[602px] animate-spin-slowest" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-dark-small.c887a101.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-dark-small.c887a101.png&amp;w=1920&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-dark-small.c887a101.png&amp;w=1920&amp;q=75" style="color: transparent;"/></div>
+<img alt="Diamond Small" loading="lazy" width="602" height="602" decoding="async" data-nimg="1" className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-1/2 w-[320px] h-[320px] md:w-[602px] md:h-[602px] animate-spin-slowest" srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-dark-small.c887a101.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-dark-small.c887a101.png&amp;w=1920&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDiamond-dark-small.c887a101.png&amp;w=1920&amp;q=75" style={{ color: "transparent" }}/></div>
 <div className="absolute bottom-38.5 md:bottom-8 w-full flex justify-between md:px-9 px-13">
     <a className="inset-0" aria-label="Back" href="/">
 <div>
@@ -32,6 +32,6 @@ export default function PhotoPage() {
 </div>
 </div>
 
- )
+ );
 
 } 

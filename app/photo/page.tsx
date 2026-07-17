@@ -8,20 +8,12 @@ export default function PhotoPage() {
 <div className="absolute top-16 left-9 text-left">
 <p className="font-semibold text-xs">TO START ANALYSIS</p>
 </div>
-<div className="relative flex flex-col items-center justify-center mb-40 w-full h-full">
-<p className="text-sm text-gray-400 tracking-wider uppercase mb-1">CLICK TO TYPE</p>
-<form action="javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')" className="relative z-10">
-<div className="flex flex-col items-center"></div>
-<input className="text-5xl sm:text-6xl font-normal text-center bg-transparent border-b border-black focus:outline-none appearance-none w-[372px] sm:w-[432px] pt-1 tracking-[-0.07em] leading-[64px] text-[#1A1B1C] z-10" placeholder="Introduce Yourself" autoComplete="off" type="text" name="name" fdprocessedid="04csh7"/>
-<button type="submit" className="sr-only">Submit</button>
-</form>
-
 <div className="relative flex h-[500px] w-[500px] items-center justify-center">
   <Image
     src="/assets/Diamond-light-large.webp"
     alt=""
-    width={500}
-    height={500}
+    width={1500}
+    height={1500}
     className="absolute animate-spin-slow"
     priority
   />
@@ -29,21 +21,37 @@ export default function PhotoPage() {
   <Image
     src="/assets/Diamond-medium-medium.webp"
     alt=""
-    width={400}
-    height={400}
+    width={1100}
+    height={1100}
     className="absolute animate-spin-medium"
   />
 
   <Image
     src="/assets/Diamond-dark-small.webp"
     alt=""
-    width={300}
-    height={300}
+    width={900}
+    height={900}
     className="absolute animate-spin-fast"
-    priority
   />
-</div>
 
+  <div className="relative z-10 flex flex-col items-center">
+    <p className="mb-1 text-sm uppercase tracking-wider text-gray-400">
+      CLICK TO TYPE
+    </p>
+
+    <form
+      onSubmit={(event) => event.preventDefault()}
+      className="flex flex-col items-center"
+    >
+      <input
+        className="w-[432px] border-b border-black bg-transparent text-center text-5xl font-normal text-[#1A1B1C] outline-none sm:text-6xl"
+        placeholder="Introduce Yourself"
+        autoComplete="off"
+        type="text"
+        name="name"
+      />
+    </form>
+  </div>
 </div>
 <div className="absolute bottom-38.5 md:bottom-8 w-full flex justify-between md:px-9 px-13">
     <a className="inset-0" aria-label="Back" href="/">

@@ -16,26 +16,33 @@ export default function PhotoPage() {
 <button type="submit" className="sr-only">Submit</button>
 </form>
 
-<Image
-  src="/assets/Diamond-dark-small.webp"
-  alt=""
-  width={300}
-  height={300}
-/>
+<div className="relative flex h-[500px] w-[500px] items-center justify-center">
+  <Image
+    src="/assets/Diamond-light-large.webp"
+    alt=""
+    width={500}
+    height={500}
+    className="absolute animate-spin-slow"
+    priority
+  />
 
-<Image
-  src="/assets/Diamond-medium-medium.webp"
-  alt=""
-  width={300}
-  height={300}
-/>
+  <Image
+    src="/assets/Diamond-medium-medium.webp"
+    alt=""
+    width={400}
+    height={400}
+    className="absolute animate-spin-medium"
+  />
 
-<Image
-  src="/assets/Diamond-light-large.webp"
-  alt=""
-  width={300}
-  height={300}
-/>
+  <Image
+    src="/assets/Diamond-dark-small.webp"
+    alt=""
+    width={300}
+    height={300}
+    className="absolute animate-spin-fast"
+    priority
+  />
+</div>
 
 </div>
 <div className="absolute bottom-38.5 md:bottom-8 w-full flex justify-between md:px-9 px-13">

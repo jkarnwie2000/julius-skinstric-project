@@ -28,3 +28,25 @@ body {
 .animate-spin-slowest {
     animation: spin 85s linear infinite;
 }
+
+.animate-spin-slow {
+  animation: spin 80s linear infinite;
+}
+
+.animate-spin-medium {
+  animation: spin 60s linear infinite reverse;
+}
+
+.animate-spin-fast {
+  animation: spin 40s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

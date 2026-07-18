@@ -4,21 +4,22 @@ import Image from "next/image";
 
 export default function PhotoPage() {
  return (
-<div className="min-h-[90vh] flex flex-col items-center justify-center bg-white text-center">
+<div className="relative h-[calc(100vh-64px)] overflow-hidden flex flex-col items-center justify-center bg-white text-center">
 <div className="absolute top-16 left-9 text-left">
 <p className="font-semibold text-xs">TO START ANALYSIS</p>
 </div>
-Julius Karnwie
-<br/>
-Washington, D. C.
-<div className="relative flex h-[700px] w-full max-w-[700px] items-center justify-center">
+<div className="mb-3 text-center text-sm leading-5">
+  <p>Julius Karnwie</p>
+  <p>Washington, D. C.</p>
+</div>
+<div className="relative flex aspect-square w-[min(762px,90vw,70vh)] items-center justify-center">
   {/* Rotating background diamonds */}
   <Image
     src="/assets/Diamond-light-large.webp"
     alt=""
     width={700}
     height={700}
-    className="absolute w-full max-w-[700px] animate-spin-slow"
+    className="absolute w-full max-w-[762px] animate-spin-slow brightness-50"
   />
 
   <Image
@@ -26,7 +27,7 @@ Washington, D. C.
     alt=""
     width={640}
     height={640}
-    className="absolute w-[90%] max-w-[640px] animate-spin-medium"
+    className="absolute w-[90%] max-w-[682px] animate-spin-medium"
   />
 
   <Image
@@ -34,11 +35,11 @@ Washington, D. C.
     alt=""
     width={580}
     height={580}
-    className="absolute w-[80%] max-w-[580px] animate-spin-fast"
+    className="absolute w-[80%] max-w-[602px] animate-spin-fast"
   />
 
   {/* One portrait above the diamonds */}
-  <div className="relative z-10 h-[320px] w-[320px] overflow-hidden">
+  <div className="relative z-10 h-[42%] w-[42%] overflow-hidden">
     <Image
       src="/assets/Best Image.png"
       alt="Portrait"

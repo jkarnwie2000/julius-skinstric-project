@@ -8,13 +8,13 @@ export default function PhotoPage() {
 <div className="absolute top-16 left-9 text-left">
 <p className="font-semibold text-xs">TO START ANALYSIS</p>
 </div>
-<div className="relative flex h-[500px] w-[500px] items-center justify-center">
+<div className="relative flex h-[700px] w-full max-w-[700px] items-center justify-center">
   <Image
     src="/assets/Diamond-light-large.webp"
     alt=""
     width={1500}
     height={1500}
-    className="absolute animate-spin-slow"
+    className="absolute w-full max-w-[700px] animate-spin-slow"
     priority
   />
 
@@ -23,7 +23,7 @@ export default function PhotoPage() {
     alt=""
     width={1100}
     height={1100}
-    className="absolute animate-spin-medium"
+    className="absolute w-[90%] max-w-[640px] animate-spin-medium"
   />
 
   <Image
@@ -31,7 +31,7 @@ export default function PhotoPage() {
     alt=""
     width={900}
     height={900}
-    className="absolute animate-spin-fast"
+    className="absolute w-[80%] max-w-[580px] animate-spin-fast"
   />
 
   <div className="relative z-10 flex flex-col items-center">
@@ -44,7 +44,7 @@ export default function PhotoPage() {
       className="flex flex-col items-center"
     >
       <input
-        className="w-[432px] border-b border-black bg-transparent text-center text-5xl font-normal text-[#1A1B1C] outline-none sm:text-6xl"
+        className="w-[90vw] max-w-[600px] border-b border-black bg-transparent text-center text-5xl outline-none"
         placeholder="Introduce Yourself"
         autoComplete="off"
         type="text"

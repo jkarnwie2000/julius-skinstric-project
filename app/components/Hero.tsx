@@ -10,6 +10,6 @@ export default function Home() {
         <img className="alt=right-bracket" loading="lazy" width="5" height="19" decoding="async" data-nimg="1" className="w-[4px] h-[17px]" style={{ color: "transparent" }} srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FRectangle%202710.61a74ed4.png&amp;w=16&amp;q=75 1x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FRectangle%202710.61a74ed4.png&amp;w=16&amp;q=75"/>
       </div>
       <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-semibold transition-colors disabled:pointer-events-none text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 mx-4 scale-[0.8] text-[#FCFCFC] text-[10px] bg-[#1A1B1C] leading-[16px]">ENTER CODE</button>
-    </div>
+      </div>    
   );
 }

@@ -44,7 +44,7 @@ export default function PhotoPage() {
       className="flex flex-col items-center"
     >
       <input
-        className="w-[90vw] max-w-[600px] border-b border-black bg-transparent text-center text-5xl outline-none"
+        className="w-[90vw] max-w-[400px] border-b border-black bg-transparent text-center text-5xl outline-none"
         placeholder="Introduce Yourself"
         autoComplete="off"
         type="text"

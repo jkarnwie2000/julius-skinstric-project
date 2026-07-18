@@ -8,49 +8,43 @@ export default function PhotoPage() {
 <div className="absolute top-16 left-9 text-left">
 <p className="font-semibold text-xs">TO START ANALYSIS</p>
 </div>
+Julius Karnwie
+<br/>
+Washington, D. C.
 <div className="relative flex h-[700px] w-full max-w-[700px] items-center justify-center">
+  {/* Rotating background diamonds */}
   <Image
     src="/assets/Diamond-light-large.webp"
     alt=""
-    width={1500}
-    height={1500}
+    width={700}
+    height={700}
     className="absolute w-full max-w-[700px] animate-spin-slow"
-    priority
   />
 
   <Image
     src="/assets/Diamond-medium-medium.webp"
     alt=""
-    width={1100}
-    height={1100}
+    width={640}
+    height={640}
     className="absolute w-[90%] max-w-[640px] animate-spin-medium"
   />
 
   <Image
     src="/assets/Diamond-dark-small.webp"
     alt=""
-    width={900}
-    height={900}
+    width={580}
+    height={580}
     className="absolute w-[80%] max-w-[580px] animate-spin-fast"
   />
 
-  <div className="relative z-10 flex flex-col items-center">
-    <p className="mb-1 text-sm uppercase tracking-wider text-gray-400">
-      CLICK TO TYPE
-    </p>
-
-    <form
-      onSubmit={(event) => event.preventDefault()}
-      className="flex flex-col items-center"
-    >
-      <input
-        className="w-[90vw] max-w-[400px] border-b border-black bg-transparent text-center text-5xl outline-none"
-        placeholder="Introduce Yourself"
-        autoComplete="off"
-        type="text"
-        name="name"
-      />
-    </form>
+  {/* One portrait above the diamonds */}
+  <div className="relative z-10 h-[320px] w-[320px] overflow-hidden">
+    <Image
+      src="/assets/Best Image.png"
+      alt="Portrait"
+      fill
+      className="object-cover"
+    />
   </div>
 </div>
 <div className="absolute bottom-38.5 md:bottom-8 w-full flex justify-between md:px-9 px-13">

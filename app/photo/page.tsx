@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function PhotoPage() {
  return (
@@ -8,11 +9,11 @@ export default function PhotoPage() {
 <div className="absolute top-16 left-9 text-left">
 <p className="font-semibold text-xs">TO START ANALYSIS</p>
 </div>
-<div className="mb-3 text-center text-sm leading-5">
+<div className="mb-3 text-center text-sm leading-5 animate-fade-up">
   <p>Julius Karnwie</p>
   <p>Washington, D. C.</p>
 </div>
-<div className="relative flex aspect-square w-[min(762px,90vw,70vh)] items-center justify-center">
+<div className="relative flex aspect-square w-[min(762px,90vw,70vh)] items-center justify-center animate-fade-up">
   {/* Rotating background diamonds */}
   <Image
     src="/assets/Diamond-light-large.webp"
@@ -39,7 +40,7 @@ export default function PhotoPage() {
   />
 
   {/* One portrait above the diamonds */}
-  <div className="relative z-10 h-[42%] w-[42%] overflow-hidden">
+  <div className="relative z-10 h-[42%] w-[42%] overflow-hidden transition-transform duration-500 ease-out hover:scale-105">
     <Image
       src="/assets/Best Image.png"
       alt="Portrait"
@@ -49,7 +50,7 @@ export default function PhotoPage() {
   </div>
 </div>
 <div className="absolute bottom-38.5 md:bottom-8 w-full flex justify-between md:px-9 px-13">
-    <a className="inset-0" aria-label="Back" href="/">
+    <Link className="inset-0" aria-label="Back" href="/">
 <div>
 <div className="relative w-12 h-12 flex items-center justify-center border border-[#1A1B1C] rotate-45 scale-[1] sm:hidden">
 <span className="rotate-[-45deg] text-xs font-semibold sm:hidden">BACK</span>
@@ -60,7 +61,7 @@ export default function PhotoPage() {
 <span className="text-sm font-semibold hidden sm:block ml-6 ">BACK</span>
 </div>
 </div>
-</a>
+</Link>
 </div>
 </div>
 

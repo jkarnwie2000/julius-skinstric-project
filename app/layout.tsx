@@ -24,9 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
-      <body>
-        <Hero/>        
+    <html lang="en">
+  <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <Hero />        
         {children}        
       </body>
     </html>

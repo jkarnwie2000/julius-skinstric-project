@@ -5,13 +5,19 @@ import Link from "next/link";
 
 export default function PhotoPage() {
  return (
-<div className="relative h-[calc(100vh-76px)] overflow-hidden flex flex-col items-center justify-center bg-white text-center">
-<div className="absolute top-16 left-9 text-left">
-<p className="font-semibold text-xs">TO START ANALYSIS</p>
+<div className="relative h-[calc(100vh-64px)] overflow-hidden flex flex-col items-center justify-center bg-white text-center">
+<div className="absolute top-[22px] left-8 w-[227px] text-left">
+  <p className="text-base leading-6 font-semibold">
+    TO START ANALYSIS
+  </p>
 </div>
 <div className="mb-3 text-center text-sm leading-5 animate-fade-up">
-  <p>Julius Gunser Karnwie</p>
-  <p>Washington, D. C.</p>
+  <p className="text-sm font-normal leading-6 opacity-40">
+  WHERE ARE YOU FROM?
+</p>
+  <p className="text-[clamp(32px,3.125vw,60px)] leading-[1.07] font-normal">
+  Washington, D. C.
+</p>
 </div>
 <div className="relative flex aspect-square w-[min(762px,90vw,70vh)] items-center justify-center animate-fade-up">
   {/* Rotating background diamonds */}

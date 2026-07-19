@@ -10,7 +10,7 @@ export default function PhotoPage() {
 <p className="font-semibold text-xs">TO START ANALYSIS</p>
 </div>
 <div className="mb-3 text-center text-sm leading-5 animate-fade-up">
-  <p>Julius Karnwie</p>
+  <p>Julius Gunser Karnwie</p>
   <p>Washington, D. C.</p>
 </div>
 <div className="relative flex aspect-square w-[min(762px,90vw,70vh)] items-center justify-center animate-fade-up">
@@ -49,9 +49,11 @@ export default function PhotoPage() {
     />
   </div>
 </div>
+
 <div className="absolute bottom-38.5 md:bottom-8 w-full flex justify-between md:px-9 px-13">
     <Link className="inset-0" aria-label="Back" href="/">
 <div>
+
 <div className="relative w-12 h-12 flex items-center justify-center border border-[#1A1B1C] rotate-45 scale-[1] sm:hidden">
 <span className="rotate-[-45deg] text-xs font-semibold sm:hidden">BACK</span>
 </div>
@@ -60,6 +62,7 @@ export default function PhotoPage() {
 <span className="absolute left-[15px] bottom-[13px] scale-[0.9] rotate-180 hidden sm:block group-hover:scale-[0.92] ease duration-300">▶</span>
 <span className="text-sm font-semibold hidden sm:block ml-6 ">BACK</span>
 </div>
+
 </div>
 </Link>
 </div>

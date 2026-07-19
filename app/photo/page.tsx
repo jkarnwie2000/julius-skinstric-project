@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function PhotoPage() {
  return (
-<div className="relative h-[calc(100vh-64px)] overflow-hidden flex flex-col items-center justify-center bg-white text-center">
+<div className="relative h-[calc(100vh-76px)] overflow-hidden flex flex-col items-center justify-center bg-white text-center">
 <div className="absolute top-16 left-9 text-left">
 <p className="font-semibold text-xs">TO START ANALYSIS</p>
 </div>

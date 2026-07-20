@@ -1,13 +1,32 @@
 "use client"
 
+import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, type FormEvent } from "react";
 
 export default function PhotoPage() {
 
-const [location, setLocation] = useState("");
+const router = useRouter();
+
+const [name, setName] = useState("");
 const [error, setError] = useState("");
+
+function handleNameSubmit(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+
+  const cleanName = name.trim();
+  const validName = /^[A-Za-z\s.'-]+$/;
+
+  if (cleanName.length < 2 || !validName.test(cleanName)) {
+    setError("Please enter a valid name using letters only.");
+    return;
+  }
+
+  setError("");
+  localStorage.setItem("name", cleanName);
+  router.push("/photo");
+}
 
 function handleSubmit(event: FormEvent<HTMLFormElement>) {
   event.preventDefault();
@@ -33,26 +52,26 @@ function handleSubmit(event: FormEvent<HTMLFormElement>) {
 </div>
 <div className="mb-3 text-center text-sm leading-5 animate-fade-up">
 
-<form onSubmit={handleSubmit} className="mb-3 text-center">
+<form onSubmit={handleNameSubmit} className="mb-3 text-center">
   <label
-    htmlFor="location"
+    htmlFor="name"
     className="block text-sm font-normal leading-6 opacity-40"
   >
-    WHERE ARE YOU FROM?
+    CLICK TO TYPE
   </label>
 
   <input
-    id="location"
+    id="name"
     type="text"
-    value={location}
-    onChange={(event) => setLocation(event.target.value)}
-    placeholder="Enter your location"
-    className="text-center text-[clamp(32px,3.125vw,60px)] leading-[1.07] outline-none border-b border-black"
+    value={name}
+    onChange={(event) => setName(event.target.value)}
+    placeholder="Introduce Yourself"
+    className="w-[min(417px,80vw)] text-center text-[clamp(32px,3.125vw,60px)] leading-[1.07] outline-none border-b border-black"
   />
 
   {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
 
-  <button type="submit" className="cursor-pointer mt-4 font-semibold">
+  <button type="submit" className="mt-4 font-semibold cursor-pointer">
     PROCEED
   </button>
 </form>
@@ -84,15 +103,6 @@ function handleSubmit(event: FormEvent<HTMLFormElement>) {
     className="absolute w-[80%] max-w-[602px] animate-spin-fast"
   />
 
-  {/* One portrait above the diamonds */}
-  <div className="relative z-10 h-[42%] w-[42%] overflow-hidden transition-transform duration-500 ease-out hover:scale-105">
-    <Image
-      src="/assets/Best Image.png"
-      alt="Portrait"
-      fill
-      className="object-cover"
-    />
-  </div>
 </div>
 
 <div className="absolute bottom-38.5 md:bottom-8 w-full flex justify-between md:px-9 px-13">

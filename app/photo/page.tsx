@@ -8,6 +8,7 @@ export default function PhotoPage() {
 
 const [location, setLocation] = useState("");
 const [error, setError] = useState("");
+const [loading, setLoading] = useState(false);
 
 async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
@@ -19,6 +20,11 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     setError("Please go back and enter your name first.");
     return;
   }
+
+  if (cleanLocation.length < 2) {
+  setError("Please enter a valid location.");
+  return;
+}
 
   try {
     setLoading(true);
@@ -44,7 +50,11 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 
     const data = await response.json();
 
-    console.log(data);
+if (data.success) {
+  router.push("/next-page");
+}
+
+    console.log("Phase One response:", data);
     localStorage.setItem("location", cleanLocation);
   } catch (error) {
     console.error(error);
@@ -81,9 +91,14 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 
   {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
 
-  <button type="submit" className="cursor-pointer mt-4 font-semibold">
-    PROCEED
-  </button>
+  <button
+  type="submit"
+  disabled={loading}
+  className="cursor-pointer mt-4 font-semibold disabled:opacity-50"
+>
+  {loading ? "SUBMITTING..." : "PROCEED"}
+</button>
+
 </form>
 
 </div>

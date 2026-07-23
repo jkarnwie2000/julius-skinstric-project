@@ -9,21 +9,50 @@ export default function PhotoPage() {
 const [location, setLocation] = useState("");
 const [error, setError] = useState("");
 
-function handleSubmit(event: FormEvent<HTMLFormElement>) {
+async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
 
   const cleanLocation = location.trim();
-  const validLocation = /^[A-Za-z\s,.'-]+$/;
+  const savedName = localStorage.getItem("name");
 
-  if (cleanLocation.length < 2 || !validLocation.test(cleanLocation)) {
-    setError("Please enter a valid location using letters only.");
+  if (!savedName) {
+    setError("Please go back and enter your name first.");
     return;
   }
 
-  setError("");
-  localStorage.setItem("location", cleanLocation);
-}
+  try {
+    setLoading(true);
+    setError("");
 
+    const response = await fetch(
+      "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseOne",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: savedName,
+          location: cleanLocation,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("The request failed.");
+    }
+
+    const data = await response.json();
+
+    console.log(data);
+    localStorage.setItem("location", cleanLocation);
+  } catch (error) {
+    console.error(error);
+    setError("Something went wrong while submitting.");
+  } finally {
+    setLoading(false);
+  }
+}
  return (
 <div className="relative h-[calc(100vh-64px)] overflow-hidden flex flex-col items-center justify-center bg-white text-center">
 <div className="absolute top-[22px] left-8 w-[227px] text-left">

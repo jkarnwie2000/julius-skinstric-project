@@ -28,22 +28,7 @@ function handleNameSubmit(event: FormEvent<HTMLFormElement>) {
   router.push("/photo");
 }
 
-function handleSubmit(event: FormEvent<HTMLFormElement>) {
-  event.preventDefault();
-
-  const cleanLocation = location.trim();
-  const validLocation = /^[A-Za-z\s,.'-]+$/;
-
-  if (cleanLocation.length < 2 || !validLocation.test(cleanLocation)) {
-    setError("Please enter a valid location using letters only.");
-    return;
-  }
-
-  setError("");
-  localStorage.setItem("location", cleanLocation);
-}
-
- return (
+return (
 <div className="relative h-[calc(100vh-64px)] overflow-hidden flex flex-col items-center justify-center bg-white text-center">
 <div className="absolute top-[22px] left-8 w-[227px] text-left">
   <p className="text-base leading-6 font-semibold">

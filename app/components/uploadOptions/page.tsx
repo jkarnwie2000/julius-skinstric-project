@@ -1,161 +1,205 @@
-"use client"
+"use client";
 
+import { Dispatch, SetStateAction, useRef } from "react";
 
-export default function uploadOptions() {
+export default function UploadOptions({
+
+option,
+
+setIsLoading,
+
+showModal,
+
+setShowModal,
+
+setIsCameraLoader,
+
+}: {
+
+option: "camera" | "upload";
+
+setIsLoading: Dispatch<SetStateAction<boolean>>;
+
+showModal?: boolean;
+
+setShowModal?: Dispatch<SetStateAction<boolean>>;
+
+setIsCameraLoader?: Dispatch<SetStateAction<boolean>>;
+
+}) {
+
+const fileInputRef = useRef(null);
+
+function handleImageChange() {}
+
+function handleImageClick() {}
 
 switch (option) {
 
-    case "camera":
+case "camera":
 
-      return (
+return (
 
-        <div className="absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%]">
+<div className="absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%]">
 
-          <div className="relative w-full h-full">
+<div className="relative w-full h-full">
 
-            <img
+{setShowModal && (
 
-              src="/assets/camera.svg"
+<img
 
-              alt="camera"
+src="/assets/camera.svg"
 
-              id="camera_icon"
+alt="camera"
 
-              onClick={() => {
+id="camera_icon"
 
-                setShowModal(true);
+onClick={() => {
 
-              }}
+setShowModal(true);
 
-            />
+}}
 
-            <div className="upload_line-primary" />
+/>
 
-            <div className="upload_bullet-point-primary" />
+)}
 
-            <h1 className="upload_sub-title-primary">
+<div className="upload_line-primary" />
 
-              Allow A.I to
+<div className="upload_bullet-point-primary" />
 
-              <br />
+<h1 className="upload_sub-title-primary">
 
-              scan your face
+Allow A.I to
 
-            </h1>
+<br />
 
-            <div
+scan your face
 
-              className={`md:w-[25vw] md:h-[10vw] lg:h-[8vw] lg:w-[20vw] max-md:w-[30vw] max-md:h-[20vw] max-sm:h-[30vw] border absolute top-[25%] left-[100%] translate-x-[10%] py-2 px-3 text-white bg-secondary flex flex-col justify-between transition-opacity duration-300
+</h1>
 
-                ${!showModal && "opacity-0"}
+<div
 
-                `}
+className={`md:w-[25vw] md:h-[10vw] lg:h-[8vw] lg:w-[20vw] max-md:w-[30vw] max-md:h-[20vw] max-sm:h-[30vw] border absolute top-[25%] left-[100%] translate-x-[10%] py-2 px-3 text-white bg-secondary flex flex-col justify-between transition-opacity duration-300
 
-            >
+${!showModal && "opacity-0"}
 
-              <h1 className="font-light md:text-[calc(100vw/90)] max-md:text-[16px] max-sm:text-[12px]">
+`}
 
-                Allow A.I. to access your camera
+>
 
-              </h1>
+<h1 className="font-light md:text-[calc(100vw/90)] max-md:text-[16px] max-sm:text-[12px]">
 
-              <div className="flex flex-col justify-end">
+Allow A.I. to access your camera
 
-                <hr className="w-full border-white" />
+</h1>
 
-                <div className="flex justify-end py-[4px] gap-4">
+<div className="flex flex-col justify-end">
 
-                  <button
+<hr className="w-full border-white" />
 
-                    className="text-primary-300 capitalize hover:text-primary-100 transition-colors duration-300 cursor-pointer md:text-[calc(100vw/90)] max-sm:text-[12px]"
+<div className="flex justify-end py-[4px] gap-4">
 
-                    onClick={() => setShowModal(false)}
+{setShowModal && (
 
-                  >
+<button
 
-                    Deny
+className="text-primary-300 capitalize hover:text-primary-100 transition-colors duration-300 cursor-pointer md:text-[calc(100vw/90)] max-sm:text-[12px]"
 
-                  </button>
+onClick={() => setShowModal(false)}
 
-                  <button
+>
 
-                    className="capitalize cursor-pointer md:text-[calc(100vw/90)] max-sm:text-[12px]"
+Deny
 
-                    onClick={() => {
+</button>
 
-                      setIsCameraLoader(true);
+)}
 
-                      setIsLoading(true);
+{setIsCameraLoader && (
 
-                    }}
+<button
 
-                  >
+className="capitalize cursor-pointer md:text-[calc(100vw/90)] max-sm:text-[12px]"
 
-                    Allow
+onClick={() => {
 
-                  </button>
+setIsCameraLoader(true);
 
-                </div>
+setIsLoading(true);
 
-              </div>
+}}
 
-            </div>
+>
 
-          </div>
+Allow
 
-        </div>
+</button>
 
-      );
+)}
 
-    case "upload":
+</div>
 
-      return (
+</div>
 
-        <div className="absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%]">
+</div>
 
-          <img
+</div>
 
-            src="/assets/gallery.svg"
+</div>
 
-            alt="camera"
+);
 
-            onClick={handleImageClick}
+case "upload":
 
-          />
+return (
 
-          <div className="upload_line-secondary" />
+<div className="absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%]">
 
-          <div className="upload_bullet-point-secondary" />
+<img
 
-          <h1 className="upload_sub-title-secondary">
+src="/assets/gallery.svg"
 
-            Allow A.I. access Gallery
+alt="camera"
 
-          </h1>
+onClick={handleImageClick}
 
-          <input
+/>
 
-            type="file"
+<div className="upload_line-secondary" />
 
-            ref={fileInputRef}
+<div className="upload_bullet-point-secondary" />
 
-            className="hidden"
+<h1 className="upload_sub-title-secondary">
 
-            onChange={(e) => handleImageChange(e)}
+Allow A.I. access Gallery
 
-            accept="image/*"
+</h1>
 
-          />
+<input
 
-        </div>
+type="file"
 
-      );
+ref={fileInputRef}
 
-    default:
+className="hidden"
 
-      break;
+// @ts-expect-error React Event
 
-  } 
+onChange={(e) => handleImageChange(e)}
 
-};
+accept="image/*"
 
+/>
+
+</div>
+
+);
+
+default:
+
+break;
+
+}
+
+}

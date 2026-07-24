@@ -40,7 +40,7 @@ export default function UploadOptions({
 
         return (
 
-        <div className="absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%]">
+        <div className="w-100 h-100 object-contain cursor-pointer">
 
         <div className="relative w-full h-full">
 
@@ -154,7 +154,7 @@ export default function UploadOptions({
 
         return (
 
-        <div className="absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%]">
+        <div className="w-100 h-100 object-contain cursor-pointer">
 
         <img
 

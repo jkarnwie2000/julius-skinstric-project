@@ -9,10 +9,10 @@ export default function UploadPage() {
   const [isCameraLoader, setIsCameraLoader] = useState(false);
 
   return (
-    <section className="px-8 md:h-full max-lg:min-h-screen flex flex-col lg:relative overflow-x-hidden">
+    <section className="min-h-[calc(100vh-80px)] px-8 flex flex-col">
       <h1 className="uppercase font-bold max-sm:mt-2">To Start Analysis</h1>
 
-      <div className="flex-1 flex items-center md:justify-between mx-auto w-full gap-10 max-md:flex-col lg:px-10">
+      <div className="flex flex-1 items-center justify-center gap-32 w-full max-md:flex-col">
         <UploadOptions
           option="camera"
           setIsLoading={setIsLoading}

@@ -1,8 +1,29 @@
 "use client";
 
 import { Dispatch, SetStateAction, useRef } from "react";
+import React, { useRef } from 'react';
+import { Image as ImageIcon } from 'lucide-react'; // Example icon library
+
 
 export default function UploadOptions({
+
+    // 1. Initialize the file input ref
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  // 2. Handle the gallery icon click to programmatically trigger the input
+  const handleImageClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  // 3. Handle the selected file changes
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files  && files[0]) {
+      const selectedFile = files[0];
+      console.log('Selected file:', selectedFile.name);
+      // Add your upload or preview logic here
+    }
+};
 
         option,
 
@@ -67,16 +88,6 @@ export default function UploadOptions({
         <div className="upload_line-primary" />
 
         <div className="upload_bullet-point-primary" />
-
-        <h1 className="upload_sub-title-primary">
-
-        Allow A.I to
-
-        <br />
-
-        scan your face
-
-        </h1>
 
         <div
 
@@ -162,35 +173,23 @@ export default function UploadOptions({
 
         alt="camera"
 
-        onClick={handleImageClick}
-
+        onClick={handleImageClick} 
+        className="cursor-pointer p-2 hover:bg-gray-100 rounded-full transition-colors"
+        role="button"
+        aria-label="Open gallery"
         />
 
         <div className="upload_line-secondary" />
 
         <div className="upload_bullet-point-secondary" />
 
-        <h1 className="upload_sub-title-secondary">
-
-        Allow A.I. access Gallery
-
-        </h1>
-
-        <input
-
+       <input
         type="file"
-
         ref={fileInputRef}
-
-        className="hidden"
-
-        // @ts-expect-error React Event
-
-        onChange={(e) => handleImageChange(e)}
-
+        onChange={handleImageChange}
         accept="image/*"
-
-        />
+        style={{ display: 'none' }}
+      />
 
         </div>
 

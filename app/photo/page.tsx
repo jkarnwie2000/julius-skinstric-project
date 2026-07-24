@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
@@ -9,6 +10,7 @@ export default function PhotoPage() {
 const [location, setLocation] = useState("");
 const [error, setError] = useState("");
 const [loading, setLoading] = useState(false);
+const router = useRouter();
 
 async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
@@ -52,6 +54,7 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 
     console.log("Phase One response:", data);
     localStorage.setItem("location", cleanLocation);
+    router.push("/upload");
   } catch (error) {
     console.error(error);
     setError("Something went wrong while submitting.");

@@ -50,10 +50,6 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 
     const data = await response.json();
 
-if (data.success) {
-  router.push("/next-page");
-}
-
     console.log("Phase One response:", data);
     localStorage.setItem("location", cleanLocation);
   } catch (error) {

@@ -32,6 +32,16 @@ export default function UploadOptions({
     }
   };
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handlePlay = () => {
+    videoRef.current?.play();
+  };
+
+  const handlePause = () => {
+    videoRef.current?.pause();
+  };
+
   switch (option) {
     case "camera":
       return (
@@ -45,7 +55,7 @@ export default function UploadOptions({
                 onClick={() => setShowModal(true)}
               />
             )}
-
+            
             <div className="upload_line-primary" />
             <div className="upload_bullet-point-primary" />
 
@@ -70,6 +80,16 @@ export default function UploadOptions({
                       Deny
                     </button>
                   )}
+
+                  <video ref={videoRef} width="640" controls>
+                    <source src="/sample-video.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  
+                  <div>
+                    <button onClick={handlePlay}>Play</button>
+                    <button onClick={handlePause}>Pause</button>
+                  </div>   
 
                   {setIsCameraLoader && (
                     <button

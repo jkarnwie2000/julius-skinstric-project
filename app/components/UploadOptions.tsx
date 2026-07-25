@@ -73,32 +73,8 @@ const handleImageChange = (
 
   console.log("Selected file:", file.name);
 };
-The order should look like:
 
-useEffect(() => {
-  return () => {
-    streamRef.current
-      ?.getTracks()
-      .forEach((track) => track.stop());
-  };
-}, []);
-
-const handleImageClick = () => {
-  fileInputRef.current?.click();
-};
-
-const handleImageChange = (
-  event: React.ChangeEvent<HTMLInputElement>
-) => {
-  const file = event.target.files?.[0];
-
-  if (!file) return;
-
-  console.log("Selected file:", file.name);
-};
-
-
-  switch (option) {
+switch (option) {
     case "camera":
       return (
         <div className="w-100 h-100 object-contain cursor-pointer">

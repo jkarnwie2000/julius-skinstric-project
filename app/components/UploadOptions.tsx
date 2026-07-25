@@ -77,61 +77,46 @@ const handleImageChange = (
 switch (option) {
     case "camera":
       return (
-        <div className="w-100 h-100 object-contain cursor-pointer">
-          <div className="relative w-full h-full">
-            {setShowModal && (
-              <img
-                src="/assets/camera.svg"
-                alt="camera"
-                id="camera_icon"
-                onClick={() => setShowModal(true)}
-              />
-            )}
-            
-            <div className="upload_line-primary" />
-            <div className="upload_bullet-point-primary" />
+        <img
+  src="/assets/camera.svg"
+  alt="camera"
+  id="camera_icon"
+  className={cameraActive ? "hidden" : ""}
+  onClick={() => setShowModal?.(true)}
+/>
 
-            <div
-              className={`md:w-[25vw] md:h-[10vw] lg:h-[8vw] lg:w-[20vw] max-md:w-[30vw] max-md:h-[20vw] max-sm:h-[30vw] border absolute top-[25%] left-[100%] translate-x-[10%] py-2 px-3 text-white bg-secondary flex flex-col justify-between transition-opacity duration-300 ${
-                !showModal ? "opacity-0" : ""
-              }`}
-            >
-              <h1 className="font-light md:text-[calc(100vw/90)] max-md:text-[16px] max-sm:text-[12px]">
-                Allow A.I. to access your camera
-              </h1>
+<video
+  ref={videoRef}
+  autoPlay
+  playsInline
+  muted
+  className={`absolute inset-0 z-20 w-full h-full object-cover ${
+    cameraActive ? "block" : "hidden"
+  }`}
+/>
 
-              <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              className={cameraActive ? "w-full h-full object-cover" : "hidden"}/>
+<div className="upload_line-primary" />
+<div className="upload_bullet-point-primary" />
 
-              <div className="flex flex-col justify-end">
-                <hr className="w-full border-white" />
+{showModal && !cameraActive && (
+  <div className="absolute top-[25%] left-[100%] z-50 w-[20vw] min-w-[240px] p-4 bg-[#1A1B1C] text-white">
+    <h1 className="font-light">
+      Allow A.I. to access your camera
+    </h1>
 
-                <div className="flex justify-end py-[4px] gap-4">
-                  {setShowModal && (
-                    <button
-                      className="text-primary-300 capitalize hover:text-primary-100 transition-colors duration-300 cursor-pointer md:text-[calc(100vw/90)] max-sm:text-[12px]"
-                      onClick={() => setShowModal(false)}
-                    >
-                      Deny
-                    </button>
-                  )}
-                  
-                  {setIsCameraLoader && (
-                    <button onClick={handleAllowCamera}>
-                      Allow
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+    <hr className="my-4 border-white" />
 
+    <div className="flex justify-end gap-4">
+      <button onClick={() => setShowModal?.(false)}>
+        Deny
+      </button>
+
+      <button onClick={handleAllowCamera}>
+        Allow
+      </button>
+    </div>
+  </div>
+)}
     case "upload":
       return (
         <div className="w-100 h-100 object-contain cursor-pointer">

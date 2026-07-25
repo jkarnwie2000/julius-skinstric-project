@@ -1,6 +1,44 @@
 "use client";
 
-import { Dispatch, SetStateAction, useRef } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
+
+const handleAllowCamera = async () => {
+  try {
+    setIsLoading(true);
+
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "user" },
+      audio: false,
+    });
+
+    streamRef.current = stream;
+
+    if (videoRef.current) {
+      videoRef.current.srcObject = stream;
+    }
+
+    setCameraActive(true);
+    setShowModal?.(false);
+    setIsCameraLoader?.(true);
+  } catch (error) {
+    console.error("Camera access failed:", error);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+useEffect(() => {
+  return () => {
+    streamRef.current?.getTracks().forEach((track) => track.stop());
+  };
+}, []);
 
 export default function UploadOptions({
   option,
@@ -17,12 +55,16 @@ export default function UploadOptions({
 }) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const [cameraActive, setCameraActive] = useState(false);
+
   const handleImageClick = () => {
     fileInputRef.current?.click();
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+  const files = e.target.files;
 
     if (files && files[0]) {
       const selectedFile = files[0];
@@ -31,8 +73,6 @@ export default function UploadOptions({
       // Upload / preview logic goes here
     }
   };
-
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePlay = () => {
     videoRef.current?.play();
@@ -68,6 +108,13 @@ export default function UploadOptions({
                 Allow A.I. to access your camera
               </h1>
 
+              <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              muted
+              className={cameraActive ? "w-full h-full object-cover" : "hidden"}/>
+
               <div className="flex flex-col justify-end">
                 <hr className="w-full border-white" />
 
@@ -80,25 +127,9 @@ export default function UploadOptions({
                       Deny
                     </button>
                   )}
-
-                  <video ref={videoRef} width="640" controls>
-                    <source src="/sample-video.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
                   
-                  <div>
-                    <button onClick={handlePlay}>Play</button>
-                    <button onClick={handlePause}>Pause</button>
-                  </div>   
-
                   {setIsCameraLoader && (
-                    <button
-                      className="capitalize cursor-pointer md:text-[calc(100vw/90)] max-sm:text-[12px]"
-                      onClick={() => {
-                        setIsCameraLoader(true);
-                        setIsLoading(true);
-                      }}
-                    >
+                    <button onClick={handleAllowCamera}>
                       Allow
                     </button>
                   )}

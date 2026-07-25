@@ -9,37 +9,6 @@ import {
 } from "react";
 
 
-const handleAllowCamera = async () => {
-  try {
-    setIsLoading(true);
-
-    const stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: "user" },
-      audio: false,
-    });
-
-    streamRef.current = stream;
-
-    if (videoRef.current) {
-      videoRef.current.srcObject = stream;
-    }
-
-    setCameraActive(true);
-    setShowModal?.(false);
-    setIsCameraLoader?.(true);
-  } catch (error) {
-    console.error("Camera access failed:", error);
-  } finally {
-    setIsLoading(false);
-  }
-};
-
-useEffect(() => {
-  return () => {
-    streamRef.current?.getTracks().forEach((track) => track.stop());
-  };
-}, []);
-
 export default function UploadOptions({
   option,
   setIsLoading,
@@ -54,34 +23,43 @@ export default function UploadOptions({
   setIsCameraLoader?: Dispatch<SetStateAction<boolean>>;
 }) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [cameraActive, setCameraActive] = useState(false);
 
-  const handleImageClick = () => {
-    fileInputRef.current?.click();
-  };
+  const handleAllowCamera = async () => {
+    try {
+      setIsLoading(true);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const files = e.target.files;
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "user" },
+        audio: false,
+      });
 
-    if (files && files[0]) {
-      const selectedFile = files[0];
-      console.log("Selected file:", selectedFile.name);
+      streamRef.current = stream;
 
-      // Upload / preview logic goes here
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+
+      setCameraActive(true);
+      setShowModal?.(false);
+      setIsCameraLoader?.(true);
+    } catch (error) {
+      console.error("Camera access failed:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const handlePlay = () => {
-    videoRef.current?.play();
-  };
-
-  const handlePause = () => {
-    videoRef.current?.pause();
-  };
-
+  useEffect(() => {
+    return () => {
+      streamRef.current
+        ?.getTracks()
+        .forEach((track) => track.stop());
+    };
+  }, []);
+  
   switch (option) {
     case "camera":
       return (

@@ -40,6 +40,7 @@ export default function UploadOptions({
 
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
+        await videoRef.current.play();
       }
 
       setCameraActive(true);
@@ -76,47 +77,52 @@ const handleImageChange = (
 
 switch (option) {
     case "camera":
-      return (
-        <img
-  src="/assets/camera.svg"
-  alt="camera"
-  id="camera_icon"
-  className={cameraActive ? "hidden" : ""}
-  onClick={() => setShowModal?.(true)}
-/>
+  return (
+    <div className="relative w-100 h-100 object-contain">
+      <img
+        src="/assets/camera.svg"
+        alt="camera"
+        id="camera_icon"
+        className={`cursor-pointer ${
+          cameraActive ? "hidden" : ""
+        }`}
+        onClick={() => setShowModal?.(true)}
+      />
 
-<video
-  ref={videoRef}
-  autoPlay
-  playsInline
-  muted
-  className={`absolute inset-0 z-20 w-full h-full object-cover ${
-    cameraActive ? "block" : "hidden"
-  }`}
-/>
+      <video
+        ref={videoRef}
+        autoPlay
+        playsInline
+        muted
+        className={`absolute inset-0 z-20 w-full h-full object-cover ${
+          cameraActive ? "block" : "hidden"
+        }`}
+      />
 
-<div className="upload_line-primary" />
-<div className="upload_bullet-point-primary" />
+      <div className="upload_line-primary" />
+      <div className="upload_bullet-point-primary" />
 
-{showModal && !cameraActive && (
-  <div className="absolute top-[25%] left-[100%] z-50 w-[20vw] min-w-[240px] p-4 bg-[#1A1B1C] text-white">
-    <h1 className="font-light">
-      Allow A.I. to access your camera
-    </h1>
+      {showModal && !cameraActive && (
+        <div className="absolute top-[25%] left-[100%] z-50 w-[20vw] min-w-[240px] p-4 bg-[#1A1B1C] text-white">
+          <h1 className="font-light">
+            Allow A.I. to access your camera
+          </h1>
 
-    <hr className="my-4 border-white" />
+          <hr className="my-4 border-white" />
 
-    <div className="flex justify-end gap-4">
-      <button onClick={() => setShowModal?.(false)}>
-        Deny
-      </button>
+          <div className="flex justify-end gap-4">
+            <button onClick={() => setShowModal?.(false)}>
+              Deny
+            </button>
 
-      <button onClick={handleAllowCamera}>
-        Allow
-      </button>
+            <button onClick={handleAllowCamera}>
+              Allow
+            </button>
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-)}
+  );
     case "upload":
       return (
         <div className="w-100 h-100 object-contain cursor-pointer">

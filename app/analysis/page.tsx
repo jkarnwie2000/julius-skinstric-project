@@ -1,8 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function AnalysisPage() {
+  const router = useRouter();
   const [status, setStatus] = useState(
     "PREPARING YOUR ANALYSIS..."
   );
@@ -51,11 +53,10 @@ export default function AnalysisPage() {
         console.log("Phase Two response:", result);
 
         sessionStorage.setItem(
-          "analysisResults",
-          JSON.stringify(result)
+        "analysisResults",
+        JSON.stringify(result)
         );
-
-        setStatus("ANALYSIS COMPLETE");
+        router.push("/results");        
       } catch (error) {
         console.error("Analysis failed:", error);
         setError(
@@ -65,9 +66,8 @@ export default function AnalysisPage() {
         );
       }
     }
-
     analyzeImage();
-  }, []);
+ }, [router]);
 
   return (
     <main className="min-h-screen flex items-center justify-center">

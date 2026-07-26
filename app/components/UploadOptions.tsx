@@ -95,7 +95,25 @@ const handleCapture = () => {
     canvas.height
   );
 
-  setCapturedImage(canvas.toDataURL("image/jpeg", 0.9));
+setCapturedImage(canvas.toDataURL("image/jpeg", 0.9));
+video.pause();
+};
+
+const handleRetake = async () => {
+  setCapturedImage(null);
+  await videoRef.current?.play();
+};
+
+const handleUsePhoto = () => {
+  if (!capturedImage) return;
+
+  sessionStorage.setItem("capturedImage", capturedImage);
+
+  streamRef.current
+    ?.getTracks()
+    .forEach((track) => track.stop());
+
+  console.log("Photo confirmed and ready for analysis.");
 };
 
 switch (option) {
@@ -124,12 +142,12 @@ switch (option) {
 
       <canvas ref={canvasRef} className="hidden" />
 
-{cameraActive && (
+{cameraActive && !capturedImage && (
   <button
     onClick={handleCapture}
     className="absolute bottom-4 left-1/2 z-30 -translate-x-1/2 bg-black px-4 py-2 text-white"
   >
-    TAKE PICTURE
+    TAKE PICTURE 
   </button>
     )}
 
@@ -140,6 +158,24 @@ switch (option) {
         className="absolute inset-0 z-30 w-full h-full object-cover"
       />
     )}
+
+    {capturedImage && (
+  <div className="absolute bottom-4 left-1/2 z-40 flex -translate-x-1/2 gap-3">
+    <button
+      onClick={handleRetake}
+      className="bg-white px-4 py-2 text-black"
+    >
+      RETAKE
+    </button>
+
+    <button
+      onClick={handleUsePhoto}
+      className="bg-black px-4 py-2 text-white"
+    >
+      USE PHOTO
+    </button>
+  </div>
+)}
 
   <div className="upload_line-primary" />
   <div className="upload_bullet-point-primary" />

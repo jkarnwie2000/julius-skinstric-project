@@ -26,6 +26,8 @@ export default function UploadOptions({
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [cameraActive, setCameraActive] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [capturedImage, setCapturedImage] = useState<string | null>(null);
 
   const handleAllowCamera = async () => {
     try {
@@ -75,6 +77,27 @@ const handleImageChange = (
   console.log("Selected file:", file.name);
 };
 
+const handleCapture = () => {
+  const video = videoRef.current;
+  const canvas = canvasRef.current;
+
+  if (!video || !canvas || video.videoWidth === 0) return;
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  const context = canvas.getContext("2d");
+  context?.drawImage(
+    video,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  setCapturedImage(canvas.toDataURL("image/jpeg", 0.9));
+};
+
 switch (option) {
     case "camera":
   return (
@@ -99,29 +122,48 @@ switch (option) {
         }`}
       />
 
-      <div className="upload_line-primary" />
-      <div className="upload_bullet-point-primary" />
+      <canvas ref={canvasRef} className="hidden" />
 
-      {showModal && !cameraActive && (
-        <div className="absolute top-[25%] left-[100%] z-50 w-[20vw] min-w-[240px] p-4 bg-[#1A1B1C] text-white">
-          <h1 className="font-light">
-            Allow A.I. to access your camera
-          </h1>
+{cameraActive && (
+  <button
+    onClick={handleCapture}
+    className="absolute bottom-4 left-1/2 z-30 -translate-x-1/2 bg-black px-4 py-2 text-white"
+  >
+    TAKE PICTURE
+  </button>
+    )}
 
-          <hr className="my-4 border-white" />
+    {capturedImage && (
+      <img
+        src={capturedImage}
+        alt="Captured preview"
+        className="absolute inset-0 z-30 w-full h-full object-cover"
+      />
+    )}
 
-          <div className="flex justify-end gap-4">
-            <button onClick={() => setShowModal?.(false)}>
-              Deny
-            </button>
+  <div className="upload_line-primary" />
+  <div className="upload_bullet-point-primary" />
 
-            <button onClick={handleAllowCamera}>
-              Allow
-            </button>
-          </div>
-        </div>
-      )}
+  {showModal && !cameraActive && (
+    <div className="absolute top-[25%] left-[100%] z-50 w-[20vw] min-w-[240px] p-4 bg-[#1A1B1C] text-white">
+      <h1 className="font-light">
+        Allow A.I. to access your camera
+      </h1>
+
+      <hr className="my-4 border-white" />
+
+      <div className="flex justify-end gap-4">
+        <button onClick={() => setShowModal?.(false)}>
+          Deny
+        </button>
+
+        <button onClick={handleAllowCamera}>
+          Allow
+        </button>
+      </div>
     </div>
+  )}
+</div>
   );
     case "upload":
       return (

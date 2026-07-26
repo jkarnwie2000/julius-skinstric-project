@@ -3,13 +3,13 @@
 import { useRouter } from "next/navigation";
 
 import {
+  ChangeEvent,
   Dispatch,
   SetStateAction,
   useEffect,
   useRef,
   useState,
 } from "react";
-
 
 export default function UploadOptions({
   option,
@@ -71,13 +71,40 @@ export default function UploadOptions({
 };
 
 const handleImageChange = (
-  event: React.ChangeEvent<HTMLInputElement>
+  event: ChangeEvent<HTMLInputElement>
 ) => {
   const file = event.target.files?.[0];
 
   if (!file) return;
 
-  console.log("Selected file:", file.name);
+  if (!file.type.startsWith("image/")) {
+    console.error("Please select a valid image file.");
+    return;
+  }
+
+  setIsLoading(true);
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    const imageData = reader.result;
+
+    if (typeof imageData !== "string") {
+      setIsLoading(false);
+      return;
+    }
+
+    sessionStorage.setItem("capturedImage", imageData);
+    setIsLoading(false);
+    router.push("/analysis");
+  };
+
+  reader.onerror = () => {
+    console.error("The selected image could not be read.");
+    setIsLoading(false);
+  };
+
+  reader.readAsDataURL(file);
 };
 
 const handleCapture = () => {

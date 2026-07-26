@@ -29,7 +29,7 @@ export default function AnalysisPage() {
 
       try {
         const response = await fetch(
-          "https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo",
+          "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo",
           {
             method: "POST",
             headers: {
@@ -50,14 +50,24 @@ export default function AnalysisPage() {
 
         const result = await response.json();
 
-        console.log("Phase Two response:", result);
+        if (
+          !result?.data?.race ||
+          !result?.data?.age ||
+          !result?.data?.gender
+        ) {
+          throw new Error(
+            result?.message || "The API returned no demographic data."
+          );
+        }
 
         sessionStorage.setItem(
         "analysisResults",
         JSON.stringify(result)
         );
         router.push("/results");        
-      } catch (error) {
+      }
+      
+      catch (error) {
         console.error("Analysis failed:", error);
         setError(
           error instanceof Error

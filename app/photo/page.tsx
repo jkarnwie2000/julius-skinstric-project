@@ -23,8 +23,13 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     return;
   }
 
-  if (cleanLocation.length < 2) {
-  setError("Please enter a valid location.");
+  if (
+  cleanLocation.length < 2 ||
+  !validLocation.test(cleanLocation)
+) {
+  setError(
+    "Please enter a valid location using letters only."
+  );
   return;
 }
 
@@ -139,7 +144,7 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 </div>
 
 <div className="absolute bottom-38.5 md:bottom-8 w-full flex justify-between md:px-9 px-13">
-    <Link className="inset-0" aria-label="Back" href="/">
+    <Link className="inset-0" aria-label="Back" href="/testing">
 <div>
 
 <div className="relative w-12 h-12 flex items-center justify-center border border-[#1A1B1C] rotate-45 scale-[1] sm:hidden">

@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import {
   Dispatch,
   SetStateAction,
@@ -28,6 +30,7 @@ export default function UploadOptions({
   const [cameraActive, setCameraActive] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleAllowCamera = async () => {
     try {
@@ -112,8 +115,8 @@ const handleUsePhoto = () => {
   streamRef.current
     ?.getTracks()
     .forEach((track) => track.stop());
-
-  console.log("Photo confirmed and ready for analysis.");
+    router.push("/analysis");
+  console.log("Photo confirmed and ready for analysis.");  
 };
 
 switch (option) {

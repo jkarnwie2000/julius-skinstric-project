@@ -66,3 +66,7 @@ body {
 .animate-fade-up {
   animation: fade-up 800ms ease-out both;
 }
+
+.text-\[clamp\(32px\,3\.125vw\,60px\)\] {
+    font-size: clamp(24px, 4.125vw, 33px);
+  }

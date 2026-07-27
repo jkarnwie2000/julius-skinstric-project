@@ -23,7 +23,9 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     return;
   }
 
-  if (
+const validLocation = /^[A-Za-z\s,.'-]+$/;
+
+if (
   cleanLocation.length < 2 ||
   !validLocation.test(cleanLocation)
 ) {

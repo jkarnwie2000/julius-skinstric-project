@@ -51,7 +51,7 @@ return (
     value={name}
     onChange={(event) => setName(event.target.value)}
     placeholder="Introduce Yourself"
-    className="w-[min(417px,80vw)] text-center text-[clamp(32px,3.125vw,60px)] leading-[1.07] outline-none border-b border-black"
+    className="w-[min(417px,80vw)] text-center text-[clamp(24px,3.125vw,60px)] leading-[1.07] outline-none border-b border-black"
   />
 
   {error && <p className="mt-2 text-sm text-red-600">{error}</p>}

@@ -40,7 +40,7 @@ return (
 <form onSubmit={handleNameSubmit} className="mb-3 text-center">
   <label
     htmlFor="name"
-    className="block text-sm font-normal leading-6 opacity-40"
+    className="block text-sm font-bold leading-6 text-[#000000]"
   >
     CLICK TO TYPE
   </label>
@@ -51,7 +51,7 @@ return (
     value={name}
     onChange={(event) => setName(event.target.value)}
     placeholder="Introduce Yourself"
-    className="w-[min(417px,80vw)] text-center text-[clamp(32px,3.125vw,60px)] leading-[1.07] outline-none border-b border-black"
+    className="w-[min(417px,80vw)] placeholder:text-black text-center text-[clamp(32px,3.125vw,60px)] leading-[1.07] outline-none border-b border-black"
   />
 
   {error && <p className="mt-2 text-sm text-red-600">{error}</p>}

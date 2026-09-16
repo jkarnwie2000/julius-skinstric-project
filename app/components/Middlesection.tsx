@@ -10,7 +10,7 @@ const [hoveredButton, setHoveredButton] = useState<
 >(null);
     
   return (
-    <div className="max-sm:scale-[0.75] max-sm:origin-center max-sm:p-6">
+    <main className="max-sm:scale-[0.75] max-sm:origin-center max-sm:p-6">
         <div className="flex flex-col items-center justify-center h-[71dvh] md:fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
         <div className="absolute inset-0 flex items-center justify-center lg:hidden">
             <div className="w-[350px] h-[350px] border border-dotted border-[#A0A4AB] rotate-45 absolute top-1/2 left-1/2 -translate-x-[52%] -translate-y-1/2"></div >
@@ -24,7 +24,7 @@ const [hoveredButton, setHoveredButton] = useState<
             ? "translate-x-48"
             : hoveredButton === "right"
                 ? "-translate-x-48"
-                : "translate-x-0"
+                : "translate-x-0" 
             }`}
 >
             <h1 className="text-[60px] text-[#1A1B1C] lg:text-[100px] font-inter font-normal tracking-tighter leading-none opacity-0" style={{ opacity: 1 }}>
@@ -33,7 +33,7 @@ const [hoveredButton, setHoveredButton] = useState<
                 <span className="block text-[#1A1B1C]">skincare</span>
             </h1>
             </div>
-            <p className="z-10 block lg:hidden w-[30ch] mt-4 text-[16px] font-semibold text-center text-muted-foreground text-[#1a1b1c83]">
+            <p className="z-10 block lg:hidden w-[30ch] mt-4 text-[18px] text-[#000000] font-bold">
                 Skinstric developed an A.I. that creates a highly personalized routine tailored to what your skin needs.
             </p>
             <div className="z-10 mt-4 lg:hidden">
@@ -49,7 +49,7 @@ const [hoveredButton, setHoveredButton] = useState<
                 </button>  
                 </a>
             </div>
-            <div className="hidden lg:block fixed bottom-[calc(-7vh)] left-[calc(-20vw)] xl:left-[calc(-27vw)] 2xl:left-[calc(-31vw)] [@media(width>=1920px)]:left-[calc(-33vw)] font-normal text-sm text-[#1A1B1C] space-y-3 uppercase">
+            <div className="hidden lg:block fixed bottom-[calc(-7vh)] left-[calc(-20vw)] xl:left-[calc(-27vw)] 2xl:left-[calc(-31vw)] [@media(width>=1920px)]:left-[calc(-33vw)] text-sm text-[#000000] space-y-3 uppercase font-bold">
                 <p>
                     Skinstric developed an A.I. that creates a 
                     <br/>
@@ -67,7 +67,7 @@ const [hoveredButton, setHoveredButton] = useState<
                     >
                     <div className="w-[30px] h-[30px] border border-solid border-black rotate-45 cursor-pointer group-hover:scale-110 duration-300"></div>
                     <span className="absolute left-[18px] top-[8px] scale-[0.9] rotate-180 group-hover:scale-105 duration-300">▶</span>
-                    <span>DISCOVER A.I.</span>
+                    <span className="text-[#000000] font-bold">DISCOVER A.I.</span>
                     </button>
                 </div>
             </div>
@@ -79,14 +79,14 @@ const [hoveredButton, setHoveredButton] = useState<
                 onMouseEnter={() => setHoveredButton("right")}
                 onMouseLeave={() => setHoveredButton(null)}
                 >
-                TAKE TEST
+                <span className="text-[#000000] font-bold">TAKE TEST</span>
                 <div className="w-[30px] h-[30px] border border-solid border-black rotate-45 group-hover:scale-110 duration-300"></div>
-                <span className="absolute left-[107px] top-[9px] scale-[0.9] cursor-pointer group-hover:scale-105 duration-300">▶</span>
+                <span className="absolute left-[107px]  text-[#000000] top-[9px] scale-[0.9] cursor-pointer group-hover:scale-105 duration-300">▶</span>
                 </button>
                 </a>
             </div>
             </div>
         </div>
-    </div>  
+    </main>  
    )
 }

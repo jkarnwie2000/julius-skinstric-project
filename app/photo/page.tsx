@@ -81,7 +81,7 @@ if (
 <form onSubmit={handleSubmit} className="mb-3 text-center">
   <label
     htmlFor="location"
-    className="block text-sm font-normal leading-6 opacity-40"
+    className="text-[#000000] block text-sm font-bold leading-6"
   >
     WHERE ARE YOU FROM?
   </label>
@@ -92,7 +92,7 @@ if (
     value={location}
     onChange={(event) => setLocation(event.target.value)}
     placeholder="Enter your location"
-    className="text-center text-[clamp(24px,3.125vw,60px)] leading-[1.07] outline-none border-b border-black"
+    className="text-center placeholder:text-black text-[clamp(24px,3.125vw,60px)] leading-[1.07] outline-none border-b border-black"
   />
 
   {error && <p className="mt-2 text-sm text-red-600">{error}</p>}

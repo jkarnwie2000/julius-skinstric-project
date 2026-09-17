@@ -36,5 +36,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # julius-skinstric-project
 
-## Accessibility Audit Completed 
+## Successfully Completed Accessibility Audit on Website 
 Audited project with Lighthouse and axe DevTools and adjusted contrast, alt text, form labels, and focus states, to bring the accessibility score from the initial 63% to 100%, to ensure a smooth browsing experience for text readers and users.
+
+## Successfully Improved Performance of Website
+I ran performance audit and corrected the LCP element to take website performance from 76% to 95%.

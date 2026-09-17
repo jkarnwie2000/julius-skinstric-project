@@ -28,6 +28,21 @@ function formatPercentage(score: number) {
 }
 
 export default function ResultsPage() {
+
+  const [result] = useState<AnalysisResult | null>(() => {
+  if (typeof window === "undefined") return null;
+
+  const storedResults = sessionStorage.getItem("analysisResults");
+
+  if (!storedResults) return null;
+
+  try {
+    return JSON.parse(storedResults);
+  } catch {
+    return null;
+  }
+});
+
   const [result, setResult] =
     useState<AnalysisResult | null>(null);
 
@@ -40,6 +55,7 @@ export default function ResultsPage() {
     age: "",
     gender: "",
   });
+
 
   useEffect(() => {
     try {
@@ -63,9 +79,7 @@ export default function ResultsPage() {
         );
       }
 
-      setResult(parsedResults);
-
-      setSelected({
+     setSelected({
         race:
           sortScores(parsedResults.data.race)[0]?.[0] ?? "",
         age:

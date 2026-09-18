@@ -41,10 +41,7 @@ export default function ResultsPage() {
   } catch {
     return null;
   }
-});
-
-  const [result, setResult] =
-    useState<AnalysisResult | null>(null);
+});  
 
   const [error, setError] = useState("");
 
@@ -55,7 +52,6 @@ export default function ResultsPage() {
     age: "",
     gender: "",
   });
-
 
   useEffect(() => {
     try {

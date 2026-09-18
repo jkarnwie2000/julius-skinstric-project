@@ -39,5 +39,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Successfully Completed Accessibility Audit on Website 
 Audited project with Lighthouse and axe DevTools and adjusted contrast, alt text, form labels, and focus states, to bring the accessibility score from the initial 63% to 100%, to ensure a smooth browsing experience for text readers and users.
 
-## Successfully Improved Performance of Website
+## Successfully Improved the Performance of live Website
 I ran performance audit and corrected the LCP element to take website performance from 76% to 95%.
+
+## Successfully run CI/CD awareness (GitHub Actions) using npm run lint
+

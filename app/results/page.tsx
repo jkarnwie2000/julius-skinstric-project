@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Scores = Record<string, number>;
 type DemographicKey = "race" | "age" | "gender";
@@ -17,8 +17,7 @@ type AnalysisResult = {
 
 function sortScores(scores: Scores) {
   return Object.entries(scores).sort(
-    ([, firstScore], [, secondScore]) =>
-      secondScore - firstScore
+    ([, firstScore], [, secondScore]) => secondScore - firstScore
   );
 }
 
@@ -27,70 +26,66 @@ function formatPercentage(score: number) {
   return percentage.toFixed(2);
 }
 
-export default function ResultsPage() {
-
-  const [result] = useState<AnalysisResult | null>(() => {
-  if (typeof window === "undefined") return null;
+function getStoredResults(): AnalysisResult | null {
+  if (typeof window === "undefined") {
+    return null;
+  }
 
   const storedResults = sessionStorage.getItem("analysisResults");
 
-  if (!storedResults) return null;
+  if (!storedResults) {
+    return null;
+  }
 
   try {
-    return JSON.parse(storedResults);
+    return JSON.parse(storedResults) as AnalysisResult;
   } catch {
     return null;
   }
-});  
+}
 
-  const [error, setError] = useState("");
+function getInitialSelected(
+  result: AnalysisResult | null
+): Record<DemographicKey, string> {
+  if (!result?.data) {
+    return {
+      race: "",
+      age: "",
+      gender: "",
+    };
+  }
+
+  return {
+    race: sortScores(result.data.race)[0]?.[0] ?? "",
+    age: sortScores(result.data.age)[0]?.[0] ?? "",
+    gender: sortScores(result.data.gender)[0]?.[0] ?? "",
+  };
+}
+
+export default function ResultsPage() {
+  const [result] = useState<AnalysisResult | null>(
+    getStoredResults
+  );
 
   const [selected, setSelected] = useState<
     Record<DemographicKey, string>
-  >({
-    race: "",
-    age: "",
-    gender: "",
-  });
+  >(() => getInitialSelected(result));
 
-  useEffect(() => {
-    try {
-      const storedResults =
-        sessionStorage.getItem("analysisResults");
-
-      if (!storedResults) {
-        throw new Error("No analysis results were found.");
-      }
-
-      const parsedResults: AnalysisResult =
-        JSON.parse(storedResults);
-
-      if (
-        !parsedResults.data?.race ||
-        !parsedResults.data?.age ||
-        !parsedResults.data?.gender
-      ) {
-        throw new Error(
-          "The demographic results could not be found."
-        );
-      }
-
-     setSelected({
-        race:
-          sortScores(parsedResults.data.race)[0]?.[0] ?? "",
-        age:
-          sortScores(parsedResults.data.age)[0]?.[0] ?? "",
-        gender:
-          sortScores(parsedResults.data.gender)[0]?.[0] ?? "",
-      });
-    } catch (error) {
-      setError(
-        error instanceof Error
-          ? error.message
-          : "The results could not be loaded."
-      );
+  const [error] = useState(() => {
+    if (!result) {
+      return "No analysis results were found.";
     }
-  }, []);
+
+    if (
+      !result.data?.race ||
+      !result.data?.age ||
+      !result.data?.gender
+    ) {
+      return "The demographic results could not be found.";
+    }
+
+    return "";
+  });
 
   if (error) {
     return (
